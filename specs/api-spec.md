@@ -599,7 +599,7 @@ Content-Type: application/json
 {
   "success": true,
   "data": {
-    "webhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+    "webhookUrl": "https://hooks.slack.com/services/EXAMPLE/EXAMPLE/ExampleWebhookUrlNotReal",
     "channel": "#incidents",
     "severityFilter": ["CRITICAL", "WARNING"],
     "enabled": true,
@@ -620,7 +620,7 @@ Content-Type: application/json
 **Request Body**:
 ```json
 {
-  "webhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+  "webhookUrl": "https://hooks.slack.com/services/EXAMPLE/EXAMPLE/ExampleWebhookUrlNotReal",
   "channel": "#incidents-critical",
   "severityFilter": ["CRITICAL"],
   "enabled": true
@@ -640,7 +640,7 @@ Content-Type: application/json
 {
   "success": true,
   "data": {
-    "webhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+    "webhookUrl": "https://hooks.slack.com/services/EXAMPLE/EXAMPLE/ExampleWebhookUrlNotReal",
     "channel": "#incidents-critical",
     "severityFilter": ["CRITICAL"],
     "enabled": true,
