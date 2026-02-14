@@ -1,0 +1,153 @@
+[
+  {
+    "traceId": "a1b2c3d4e5f6g7h8",
+    "spanId": "span-001",
+    "parentSpanId": null,
+    "serviceName": "api-gateway",
+    "operationName": "POST /api/orders",
+    "startTime": "2026-02-14T14:31:00.000Z",
+    "duration": 30567,
+    "status": "ERROR",
+    "tags": {
+      "http.method": "POST",
+      "http.url": "/api/orders",
+      "http.status_code": 503,
+      "error": true
+    },
+    "logs": [
+      {
+        "timestamp": "2026-02-14T14:31:00.123Z",
+        "event": "Routing request to order-service"
+      },
+      {
+        "timestamp": "2026-02-14T14:31:30.567Z",
+        "event": "Request timeout",
+        "error": "java.net.SocketTimeoutException"
+      }
+    ]
+  },
+  {
+    "traceId": "a1b2c3d4e5f6g7h8",
+    "spanId": "span-002",
+    "parentSpanId": "span-001",
+    "serviceName": "order-service",
+    "operationName": "POST /api/v1/orders",
+    "startTime": "2026-02-14T14:31:00.234Z",
+    "duration": 30234,
+    "status": "ERROR",
+    "tags": {
+      "http.method": "POST",
+      "http.url": "/api/v1/orders",
+      "http.status_code": 504,
+      "error": true,
+      "downstream": "payment-service"
+    },
+    "logs": [
+      {
+        "timestamp": "2026-02-14T14:31:00.345Z",
+        "event": "Calling payment-service"
+      },
+      {
+        "timestamp": "2026-02-14T14:31:30.468Z",
+        "event": "Payment service timeout",
+        "error": "org.springframework.web.client.ResourceAccessException"
+      }
+    ]
+  },
+  {
+    "traceId": "a1b2c3d4e5f6g7h8",
+    "spanId": "span-003",
+    "parentSpanId": "span-002",
+    "serviceName": "payment-service",
+    "operationName": "POST /api/v1/payments",
+    "startTime": "2026-02-14T14:31:00.456Z",
+    "duration": 30012,
+    "status": "ERROR",
+    "tags": {
+      "http.method": "POST",
+      "http.url": "/api/v1/payments",
+      "error": true,
+      "downstream": "payment-gateway",
+      "timeout": "NOT_SET"
+    },
+    "logs": [
+      {
+        "timestamp": "2026-02-14T14:31:00.567Z",
+        "event": "Calling payment-gateway"
+      },
+      {
+        "timestamp": "2026-02-14T14:31:15.123Z",
+        "event": "Connection attempt 1 failed"
+      },
+      {
+        "timestamp": "2026-02-14T14:31:20.234Z",
+        "event": "Connection attempt 2 failed"
+      },
+      {
+        "timestamp": "2026-02-14T14:31:25.345Z",
+        "event": "Connection attempt 3 failed"
+      },
+      {
+        "timestamp": "2026-02-14T14:31:30.468Z",
+        "event": "All retry attempts exhausted",
+        "error": "java.net.SocketTimeoutException: Read timed out"
+      }
+    ]
+  },
+  {
+    "traceId": "a1b2c3d4e5f6g7h8",
+    "spanId": "span-004",
+    "parentSpanId": "span-003",
+    "serviceName": "payment-gateway",
+    "operationName": "POST /api/charge",
+    "startTime": "2026-02-14T14:31:00.678Z",
+    "duration": 0,
+    "status": "ERROR",
+    "tags": {
+      "http.method": "POST",
+      "http.url": "/api/charge",
+      "error": true,
+      "error.kind": "CONNECTION_REFUSED"
+    },
+    "logs": [
+      {
+        "timestamp": "2026-02-14T14:31:00.678Z",
+        "event": "Connection refused - service down"
+      }
+    ]
+  },
+  {
+    "summary": {
+      "traceId": "a1b2c3d4e5f6g7h8",
+      "totalDuration": 30567,
+      "spanCount": 4,
+      "errorCount": 4,
+      "services": ["api-gateway", "order-service", "payment-service", "payment-gateway"],
+      "failureChain": [
+        {
+          "order": 1,
+          "service": "payment-gateway",
+          "issue": "Service down (connection refused)"
+        },
+        {
+          "order": 2,
+          "service": "payment-service",
+          "issue": "Timeout calling payment-gateway (no timeout configured)"
+        },
+        {
+          "order": 3,
+          "service": "order-service",
+          "issue": "Timeout calling payment-service (30s timeout)"
+        },
+        {
+          "order": 4,
+          "service": "api-gateway",
+          "issue": "Request timeout, circuit breaker opened"
+        }
+      ],
+      "rootCause": "payment-gateway service unavailable",
+      "cascadingEffect": "No circuit breakers or bulkheads - failure propagated upstream",
+      "impactedUsers": "All users attempting checkout operations"
+    }
+  }
+]

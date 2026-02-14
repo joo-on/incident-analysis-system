@@ -1,0 +1,82 @@
+[
+  {
+    "timestamp": "2026-02-14T14:28:15.123Z",
+    "level": "WARN",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "logger": "com.zaxxer.hikari.pool.HikariPool",
+    "message": "HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=45s123ms).",
+    "threadName": "HikariPool-1 housekeeper",
+    "context": {
+      "poolName": "HikariPool-1",
+      "activeConnections": 46,
+      "idleConnections": 3,
+      "pendingThreads": 89
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:12.345Z",
+    "level": "ERROR",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "logger": "com.zaxxer.hikari.pool.HikariPool",
+    "message": "HikariPool-1 - Connection is not available, request timed out after 30000ms.",
+    "exception": "java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30000ms.\n\tat com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:695)\n\tat com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:197)\n\tat com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:162)\n\tat com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128)",
+    "threadName": "http-nio-8080-exec-47",
+    "context": {
+      "requestId": "req-abc-12345",
+      "userId": "user-789",
+      "endpoint": "POST /api/payments",
+      "poolName": "HikariPool-1"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:15.678Z",
+    "level": "ERROR",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "logger": "com.payment.service.UserService",
+    "message": "Failed to get user details",
+    "exception": "java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available\n\tat com.payment.service.UserService.getUserDetails(UserService.java:45)\n\tat com.payment.controller.PaymentController.processPayment(PaymentController.java:89)",
+    "threadName": "http-nio-8080-exec-52",
+    "context": {
+      "requestId": "req-def-67890",
+      "userId": "user-456",
+      "method": "getUserDetails",
+      "lineNumber": 45
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:18.234Z",
+    "level": "ERROR",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "logger": "org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver",
+    "message": "Resolved [java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available]",
+    "threadName": "http-nio-8080-exec-58",
+    "context": {
+      "requestId": "req-ghi-11223",
+      "endpoint": "POST /api/payments",
+      "statusCode": 503,
+      "errorMessage": "Service temporarily unavailable"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:20.567Z",
+    "level": "INFO",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "logger": "com.payment.monitoring.MetricsCollector",
+    "message": "Connection pool metrics",
+    "threadName": "metrics-collector",
+    "context": {
+      "poolName": "HikariPool-1",
+      "totalConnections": 50,
+      "activeConnections": 49,
+      "idleConnections": 0,
+      "pendingThreads": 127,
+      "connectionTimeout": 30000,
+      "maxLifetime": 1800000
+    }
+  }
+]

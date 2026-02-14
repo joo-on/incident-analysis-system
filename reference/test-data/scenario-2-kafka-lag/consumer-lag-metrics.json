@@ -1,0 +1,114 @@
+[
+  {
+    "timestamp": "2026-02-14T14:00:00.000Z",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "metric": "kafka.consumer.lag",
+    "value": 125,
+    "unit": "messages",
+    "metadata": {
+      "topic": "metrics",
+      "partition": 0,
+      "consumerGroup": "incident-detection-group",
+      "currentOffset": 1234500,
+      "logEndOffset": 1234625,
+      "lag": 125
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:05:00.000Z",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "metric": "kafka.consumer.lag",
+    "value": 567,
+    "unit": "messages",
+    "metadata": {
+      "topic": "metrics",
+      "partition": 0,
+      "consumerGroup": "incident-detection-group",
+      "currentOffset": 1235200,
+      "logEndOffset": 1235767,
+      "lag": 567
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:10:00.000Z",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "metric": "kafka.consumer.lag",
+    "value": 1523,
+    "unit": "messages",
+    "metadata": {
+      "topic": "metrics",
+      "partition": 0,
+      "consumerGroup": "incident-detection-group",
+      "currentOffset": 1236800,
+      "logEndOffset": 1238323,
+      "lag": 1523
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:15:00.000Z",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "metric": "kafka.consumer.lag",
+    "value": 3456,
+    "unit": "messages",
+    "metadata": {
+      "topic": "metrics",
+      "partition": 0,
+      "consumerGroup": "incident-detection-group",
+      "currentOffset": 1238900,
+      "logEndOffset": 1242356,
+      "lag": 3456
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:20:00.000Z",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "metric": "kafka.consumer.lag",
+    "value": 7234,
+    "unit": "messages",
+    "metadata": {
+      "topic": "metrics",
+      "partition": 0,
+      "consumerGroup": "incident-detection-group",
+      "currentOffset": 1241500,
+      "logEndOffset": 1248734,
+      "lag": 7234
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:25:00.000Z",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "metric": "kafka.consumer.lag",
+    "value": 11890,
+    "unit": "messages",
+    "metadata": {
+      "topic": "metrics",
+      "partition": 0,
+      "consumerGroup": "incident-detection-group",
+      "currentOffset": 1244200,
+      "logEndOffset": 1256090,
+      "lag": 11890
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:00.000Z",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "metric": "kafka.consumer.lag",
+    "value": 15234,
+    "unit": "messages",
+    "metadata": {
+      "topic": "metrics",
+      "partition": 0,
+      "consumerGroup": "incident-detection-group",
+      "currentOffset": 1245345,
+      "logEndOffset": 1260579,
+      "lag": 15234
+    }
+  }
+]

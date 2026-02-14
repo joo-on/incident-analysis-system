@@ -1,0 +1,156 @@
+# Heap Dump Summary Analysis
+# Generated: 2026-02-14T14:36:00.000Z
+# Heap Size: 2.0 GB
+# Used: 1.96 GB (98%)
+
+## Top Memory Consumers
+
+1. java.util.HashMap @ 0x7f8a1c000000
+   Shallow Heap: 48 bytes
+   Retained Heap: 1,258,291,200 bytes (60% of total heap)
+   Instance Count: 1
+   Class: com.incident.analysis.cache.IncidentCache
+   Field: cache
+
+   Description: Unbounded HashMap containing 52,430 Incident objects
+   Growth Rate: ~100 entries/minute
+   Oldest Entry: 8 hours 47 minutes ago
+   Recommendation: Implement size limit or TTL-based eviction
+
+2. java.util.ArrayList @ 0x7f8a2d000000
+   Shallow Heap: 32 bytes
+   Retained Heap: 524,288,000 bytes (25% of total heap)
+   Instance Count: 50,000+
+   Class: com.incident.analysis.service.AIAnalyzerService
+   Field: analysisHistory
+
+   Description: Static ArrayList accumulating all AI analysis requests
+   Growth Rate: ~80 entries/minute
+   Total Entries: 42,156
+   Recommendation: Remove static collection or implement LRU cache
+
+3. java.lang.ThreadLocal @ 0x7f8a3e000000
+   Shallow Heap: 16 bytes
+   Retained Heap: 209,715,200 bytes (10% of total heap)
+   Instance Count: 1,245
+   Threads: 200 (Tomcat thread pool)
+
+   Description: ThreadLocal variables not cleaned up after request completion
+   Average Size per Thread: 168,412 bytes
+   Recommendation: Call ThreadLocal.remove() in finally block or filter
+
+4. com.incident.analysis.entity.AnalysisReport @ 0x7f8a4f000000
+   Shallow Heap: 456 bytes
+   Retained Heap: 83,886,080 bytes (4% of total heap)
+   Instance Count: 18,432
+
+   Description: Large AnalysisReport objects with full log context
+   Average Size: 4,552 bytes
+   Recommendation: Reduce log context size or implement pagination
+
+## Leak Suspects
+
+### Leak Suspect #1 (Confidence: 95%)
+Class: com.incident.analysis.cache.IncidentCache
+Problem: HashMap with no size limit or eviction policy
+Evidence:
+  - HashMap size: 52,430 entries
+  - Memory consumed: 1.2 GB
+  - Growth: Linear increase over 8+ hours
+  - No removal operations logged
+
+Code Location:
+  File: IncidentCache.java
+  Line: 23
+  Method: put(UUID, Incident)
+
+Recommendation:
+  Replace HashMap with Caffeine cache:
+
+  Cache<UUID, Incident> cache = Caffeine.newBuilder()
+      .maximumSize(10000)
+      .expireAfterWrite(1, TimeUnit.HOURS)
+      .build();
+
+### Leak Suspect #2 (Confidence: 87%)
+Class: com.incident.analysis.service.AIAnalyzerService
+Problem: Static ArrayList accumulating all analysis requests
+Evidence:
+  - ArrayList size: 42,156 entries
+  - Memory consumed: 524 MB
+  - Growth: Continuous accumulation
+  - Never cleared
+
+Code Location:
+  File: AIAnalyzerService.java
+  Line: 34
+  Field: private static List<AnalysisRequest> analysisHistory
+
+Recommendation:
+  Remove static field or use bounded queue:
+
+  private static final Queue<AnalysisRequest> analysisHistory =
+      new ConcurrentLinkedQueue<>();
+
+  // Limit size
+  while (analysisHistory.size() > 1000) {
+      analysisHistory.poll();
+  }
+
+### Leak Suspect #3 (Confidence: 72%)
+Class: java.lang.ThreadLocal
+Problem: ThreadLocal variables not cleaned up
+Evidence:
+  - 200 threads with ThreadLocal data
+  - 168 KB average per thread
+  - Total: 209 MB
+
+Code Location:
+  File: RequestContext.java
+  Line: 15
+  Field: private static ThreadLocal<Map<String, Object>> context
+
+Recommendation:
+  Add cleanup in Filter or use InheritableThreadLocal with caution:
+
+  @Override
+  public void doFilter(ServletRequest request, ServletResponse response,
+                       FilterChain chain) {
+      try {
+          chain.doFilter(request, response);
+      } finally {
+          RequestContext.clear(); // Add this!
+      }
+  }
+
+## GC Statistics
+
+Total GC Count: 1,456
+Total GC Time: 234,567 ms (23.4% of uptime)
+Average GC Pause: 161 ms
+Max GC Pause: 8,234 ms (Full GC)
+
+Young GC:
+  Count: 1,434
+  Average Duration: 124 ms
+  Total Time: 177,816 ms
+
+Old GC (Mixed):
+  Count: 21
+  Average Duration: 1,678 ms
+  Total Time: 35,238 ms
+
+Full GC:
+  Count: 1
+  Duration: 8,234 ms
+  Reclaimed: 41 MB (2% of heap)
+  WARNING: Full GC unable to reclaim memory
+
+## Recommendations
+
+1. IMMEDIATE: Restart service to clear memory
+2. HIGH: Implement bounded cache with Caffeine
+3. HIGH: Remove static collection or add size limit
+4. MEDIUM: Add ThreadLocal cleanup in filters
+5. MEDIUM: Increase heap size from 2GB to 4GB (temporary)
+6. LOW: Enable continuous heap profiling in production

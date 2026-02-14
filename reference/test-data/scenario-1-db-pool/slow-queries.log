@@ -1,0 +1,36 @@
+# MySQL Slow Query Log
+# Time: 2026-02-14T14:25:12.123456Z
+# User@Host: incident_user[incident_user] @ payment-prod-01 [10.0.1.45]
+# Query_time: 12.345678  Lock_time: 0.000123  Rows_sent: 1  Rows_examined: 156789
+SET timestamp=1708008312;
+SELECT u.* FROM users u
+LEFT JOIN user_payments up ON u.id = up.user_id
+WHERE u.created_at > '2026-01-01'
+ORDER BY u.created_at DESC;
+
+# Time: 2026-02-14T14:28:45.234567Z
+# User@Host: incident_user[incident_user] @ payment-prod-01 [10.0.1.45]
+# Query_time: 8.567890  Lock_time: 0.000045  Rows_sent: 0  Rows_examined: 234567
+SET timestamp=1708008525;
+UPDATE payments SET status = 'PROCESSING'
+WHERE payment_id IN (
+  SELECT payment_id FROM payment_queue
+  WHERE created_at < NOW() - INTERVAL 5 MINUTE
+);
+
+# Time: 2026-02-14T14:29:30.345678Z
+# User@Host: incident_user[incident_user] @ payment-prod-01 [10.0.1.45]
+# Query_time: 15.234567  Lock_time: 2.456789  Rows_sent: 1  Rows_examined: 567890
+SET timestamp=1708008570;
+SELECT * FROM transactions t
+JOIN payments p ON t.payment_id = p.id
+JOIN users u ON p.user_id = u.id
+WHERE t.created_at BETWEEN '2026-02-01' AND '2026-02-14'
+AND t.status = 'PENDING'
+ORDER BY t.created_at;
+
+# Time: 2026-02-14T14:30:00.456789Z
+# User@Host: incident_user[incident_user] @ payment-prod-01 [10.0.1.45]
+# Query_time: 20.123456  Lock_time: 5.678901  Rows_sent: 0  Rows_examined: 890123
+SET timestamp=1708008600;
+DELETE FROM audit_logs WHERE created_at < '2026-01-01';

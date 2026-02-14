@@ -1,0 +1,114 @@
+[
+  {
+    "timestamp": "2026-02-14T14:30:00.123Z",
+    "level": "ERROR",
+    "service": "payment-gateway",
+    "host": "payment-gw-01",
+    "logger": "com.gateway.health.HealthCheckService",
+    "message": "Service health check failed",
+    "exception": "java.net.ConnectException: Connection refused\n\tat java.net.PlainSocketImpl.socketConnect(Native Method)\n\tat com.gateway.health.HealthCheckService.checkHealth(HealthCheckService.java:67)",
+    "context": {
+      "healthCheckUrl": "http://localhost:8080/actuator/health",
+      "attemptCount": 3,
+      "lastSuccessfulCheck": "2026-02-14T14:29:45.000Z"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:15.234Z",
+    "level": "ERROR",
+    "service": "payment-service",
+    "host": "payment-01",
+    "logger": "org.springframework.web.client.RestTemplate",
+    "message": "I/O error on POST request for \"http://payment-gateway/api/charge\"",
+    "exception": "java.net.SocketTimeoutException: Read timed out\n\tat java.net.SocketInputStream.socketRead0(Native Method)\n\tat org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:747)\n\tat com.payment.service.PaymentService.processPayment(PaymentService.java:89)",
+    "context": {
+      "requestId": "req-pay-12345",
+      "downstream": "payment-gateway",
+      "timeout": "NOT_SET",
+      "retryAttempt": 1
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:30.345Z",
+    "level": "WARN",
+    "service": "payment-service",
+    "host": "payment-01",
+    "logger": "com.payment.monitoring.ThreadPoolMonitor",
+    "message": "Thread pool exhaustion detected",
+    "context": {
+      "poolName": "http-nio-8080-exec",
+      "activeThreads": 200,
+      "maxThreads": 200,
+      "queueSize": 1523,
+      "rejectedTasks": 67,
+      "averageWaitTime": 15234
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:31:05.456Z",
+    "level": "ERROR",
+    "service": "order-service",
+    "host": "order-01",
+    "logger": "com.order.service.OrderService",
+    "message": "Failed to create order: Timeout calling payment-service",
+    "exception": "org.springframework.web.client.ResourceAccessException: I/O error on POST request for \"http://payment-service/api/v1/payments\": Read timed out\n\tat com.order.service.OrderService.createOrder(OrderService.java:123)\n\tat com.order.controller.OrderController.processOrder(OrderController.java:56)",
+    "context": {
+      "orderId": "ORD-78901",
+      "userId": "user-456",
+      "downstream": "payment-service",
+      "timeout": "PT30S",
+      "retryAttempt": 3,
+      "circuitBreakerState": "CLOSED"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:31:30.567Z",
+    "level": "CRITICAL",
+    "service": "api-gateway",
+    "host": "gateway-01",
+    "logger": "com.gateway.health.HealthAggregator",
+    "message": "Multiple downstream services unhealthy",
+    "context": {
+      "totalServices": 12,
+      "healthyServices": 10,
+      "unhealthyServices": ["payment-service", "order-service"],
+      "degradedServices": [],
+      "overallHealth": "CRITICAL",
+      "errorRate": 87.3,
+      "upstreamImpact": "SEVERE"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:31:35.678Z",
+    "level": "ERROR",
+    "service": "api-gateway",
+    "host": "gateway-01",
+    "logger": "com.gateway.router.RequestRouter",
+    "message": "Service routing failed for /api/orders",
+    "exception": "com.netflix.hystrix.exception.HystrixRuntimeException: OrderService timed out and fallback failed.\n\tat com.gateway.router.RequestRouter.routeRequest(RequestRouter.java:234)",
+    "context": {
+      "path": "/api/orders",
+      "method": "POST",
+      "targetService": "order-service",
+      "circuitBreakerState": "OPEN",
+      "fallbackResult": "FAILED",
+      "requestId": "req-gw-99887"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:32:00.789Z",
+    "level": "ERROR",
+    "service": "user-service",
+    "host": "user-01",
+    "logger": "com.user.service.ProfileService",
+    "message": "Failed to fetch user profile",
+    "exception": "java.net.SocketTimeoutException: Read timed out\n\tat com.user.service.ProfileService.getUserProfile(ProfileService.java:45)",
+    "context": {
+      "userId": "user-123",
+      "downstream": "api-gateway",
+      "endpoint": "/api/users/123",
+      "timeout": "PT15S",
+      "cascadingFailure": true
+    }
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "timestamp": "2026-02-14T14:30:00.000Z",
+    "service": "payment-gateway",
+    "host": "payment-gw-01",
+    "metric": "service.health",
+    "value": 0,
+    "status": "DOWN",
+    "metadata": {
+      "healthCheck": "failed",
+      "lastSuccessfulCheck": "2026-02-14T14:29:45.000Z",
+      "errorMessage": "Connection refused",
+      "uptime": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:30.000Z",
+    "service": "payment-service",
+    "host": "payment-01",
+    "metric": "http.server.requests.active",
+    "value": 200,
+    "status": "DEGRADED",
+    "metadata": {
+      "maxThreads": 200,
+      "usage": 100.0,
+      "pendingRequests": 1523,
+      "averageResponseTime": 29876,
+      "errorRate": 78.5
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:31:00.000Z",
+    "service": "order-service",
+    "host": "order-01",
+    "metric": "http.client.requests.timeout",
+    "value": 45,
+    "unit": "count/min",
+    "status": "DEGRADED",
+    "metadata": {
+      "target": "payment-service",
+      "timeoutDuration": "PT30S",
+      "totalRequests": 87,
+      "timeoutRate": 51.7,
+      "retryAttempts": 135
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:31:30.000Z",
+    "service": "api-gateway",
+    "host": "gateway-01",
+    "metric": "http.server.requests.error.rate",
+    "value": 87.3,
+    "unit": "%",
+    "status": "CRITICAL",
+    "metadata": {
+      "totalRequests": 2345,
+      "errorRequests": 2047,
+      "status5xx": 1834,
+      "status4xx": 213,
+      "unhealthyDownstreams": ["payment-service", "order-service"]
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:31:00.000Z",
+    "service": "order-service",
+    "host": "order-01",
+    "metric": "http.server.requests.active",
+    "value": 150,
+    "status": "DEGRADED",
+    "metadata": {
+      "maxThreads": 150,
+      "usage": 100.0,
+      "pendingRequests": 892,
+      "averageResponseTime": 28456,
+      "errorRate": 62.3
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:32:00.000Z",
+    "service": "user-service",
+    "host": "user-01",
+    "metric": "http.client.requests.timeout",
+    "value": 23,
+    "unit": "count/min",
+    "status": "DEGRADED",
+    "metadata": {
+      "target": "api-gateway",
+      "timeoutDuration": "PT15S",
+      "totalRequests": 56,
+      "timeoutRate": 41.1
+    }
+  }
+]

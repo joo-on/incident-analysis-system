@@ -1,0 +1,83 @@
+[
+  {
+    "timestamp": "2026-02-14T14:25:30.123Z",
+    "level": "WARN",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "logger": "org.apache.kafka.clients.consumer.internals.ConsumerCoordinator",
+    "message": "Consumer lag detected: 11890 messages behind on partition metrics-0",
+    "context": {
+      "consumerGroup": "incident-detection-group",
+      "topic": "metrics",
+      "partition": 0,
+      "currentOffset": 1244200,
+      "logEndOffset": 1256090,
+      "lag": 11890
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:28:15.234Z",
+    "level": "WARN",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "logger": "com.incident.detection.consumer.MetricsConsumer",
+    "message": "Message processing time exceeded threshold",
+    "context": {
+      "averageProcessingTime": 487,
+      "threshold": 100,
+      "unit": "milliseconds",
+      "messagesProcessed": 156,
+      "messagesPerSecond": 3.2
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:00.345Z",
+    "level": "ERROR",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "logger": "com.incident.detection.consumer.MetricsConsumer",
+    "message": "Consumer lag critical: 15234 messages",
+    "context": {
+      "consumerGroup": "incident-detection-group",
+      "topic": "metrics",
+      "partition": 0,
+      "lag": 15234,
+      "lagThreshold": 10000,
+      "producerRate": 1000,
+      "consumerRate": 102,
+      "throughputGap": 898
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:05.456Z",
+    "level": "INFO",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "logger": "com.incident.detection.repository.IncidentRepository",
+    "message": "Database write latency high",
+    "context": {
+      "operation": "saveIncident",
+      "latency": 456,
+      "threshold": 100,
+      "unit": "milliseconds",
+      "batchSize": 1,
+      "recommendation": "Consider batch inserts"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:10.567Z",
+    "level": "INFO",
+    "service": "incident-detection-engine",
+    "host": "detection-prod-01",
+    "logger": "org.springframework.kafka.listener.KafkaMessageListenerContainer",
+    "message": "Kafka consumer poll metrics",
+    "context": {
+      "pollTime": 3000,
+      "recordsPolled": 500,
+      "recordsProcessed": 48,
+      "processingTime": 24567,
+      "averagePerMessage": 512,
+      "unit": "milliseconds"
+    }
+  }
+]

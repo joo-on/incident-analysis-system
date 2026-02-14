@@ -1,0 +1,146 @@
+[
+  {
+    "timestamp": "2026-02-14T14:00:00.000Z",
+    "service": "incident-analysis-api",
+    "host": "api-prod-01",
+    "metric": "jvm.memory.used",
+    "value": 644245094,
+    "unit": "bytes",
+    "metadata": {
+      "area": "heap",
+      "id": "G1 Old Gen",
+      "max": 2147483648,
+      "committed": 2147483648,
+      "used": 644245094,
+      "usage": 30.0
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:05:00.000Z",
+    "service": "incident-analysis-api",
+    "host": "api-prod-01",
+    "metric": "jvm.memory.used",
+    "value": 858993459,
+    "unit": "bytes",
+    "metadata": {
+      "area": "heap",
+      "id": "G1 Old Gen",
+      "max": 2147483648,
+      "committed": 2147483648,
+      "used": 858993459,
+      "usage": 40.0
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:10:00.000Z",
+    "service": "incident-analysis-api",
+    "host": "api-prod-01",
+    "metric": "jvm.memory.used",
+    "value": 1073741824,
+    "unit": "bytes",
+    "metadata": {
+      "area": "heap",
+      "id": "G1 Old Gen",
+      "max": 2147483648,
+      "committed": 2147483648,
+      "used": 1073741824,
+      "usage": 50.0
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:15:00.000Z",
+    "service": "incident-analysis-api",
+    "host": "api-prod-01",
+    "metric": "jvm.memory.used",
+    "value": 1288490189,
+    "unit": "bytes",
+    "metadata": {
+      "area": "heap",
+      "id": "G1 Old Gen",
+      "max": 2147483648,
+      "committed": 2147483648,
+      "used": 1288490189,
+      "usage": 60.0
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:20:00.000Z",
+    "service": "incident-analysis-api",
+    "host": "api-prod-01",
+    "metric": "jvm.memory.used",
+    "value": 1503238553,
+    "unit": "bytes",
+    "metadata": {
+      "area": "heap",
+      "id": "G1 Old Gen",
+      "max": 2147483648,
+      "committed": 2147483648,
+      "used": 1503238553,
+      "usage": 70.0
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:25:00.000Z",
+    "service": "incident-analysis-api",
+    "host": "api-prod-01",
+    "metric": "jvm.memory.used",
+    "value": 1717986918,
+    "unit": "bytes",
+    "metadata": {
+      "area": "heap",
+      "id": "G1 Old Gen",
+      "max": 2147483648,
+      "committed": 2147483648,
+      "used": 1717986918,
+      "usage": 80.0
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:00.000Z",
+    "service": "incident-analysis-api",
+    "host": "api-prod-01",
+    "metric": "jvm.memory.used",
+    "value": 1932735283,
+    "unit": "bytes",
+    "metadata": {
+      "area": "heap",
+      "id": "G1 Old Gen",
+      "max": 2147483648,
+      "committed": 2147483648,
+      "used": 1932735283,
+      "usage": 90.0
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:35:00.000Z",
+    "service": "incident-analysis-api",
+    "host": "api-prod-01",
+    "metric": "jvm.memory.used",
+    "value": 2040109465,
+    "unit": "bytes",
+    "metadata": {
+      "area": "heap",
+      "id": "G1 Old Gen",
+      "max": 2147483648,
+      "committed": 2147483648,
+      "used": 2040109465,
+      "usage": 95.0
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:36:00.000Z",
+    "service": "incident-analysis-api",
+    "host": "api-prod-01",
+    "metric": "jvm.memory.used",
+    "value": 2104533975,
+    "unit": "bytes",
+    "metadata": {
+      "area": "heap",
+      "id": "G1 Old Gen",
+      "max": 2147483648,
+      "committed": 2147483648,
+      "used": 2104533975,
+      "usage": 98.0
+    }
+  }
+]

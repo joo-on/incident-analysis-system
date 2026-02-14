@@ -1,0 +1,99 @@
+[
+  {
+    "timestamp": "2026-02-14T14:10:15.123Z",
+    "gcType": "G1 Young Generation",
+    "duration": 52,
+    "unit": "milliseconds",
+    "heapBeforeGC": 1073741824,
+    "heapAfterGC": 966367641,
+    "heapReclaimed": 107374183,
+    "youngGenBeforeGC": 536870912,
+    "youngGenAfterGC": 53687091,
+    "oldGenBeforeGC": 536870912,
+    "oldGenAfterGC": 912680550
+  },
+  {
+    "timestamp": "2026-02-14T14:15:30.234Z",
+    "gcType": "G1 Young Generation",
+    "duration": 78,
+    "unit": "milliseconds",
+    "heapBeforeGC": 1288490189,
+    "heapAfterGC": 1181116006,
+    "heapReclaimed": 107374183,
+    "youngGenBeforeGC": 536870912,
+    "youngGenAfterGC": 53687091,
+    "oldGenBeforeGC": 751619277,
+    "oldGenAfterGC": 1127428915
+  },
+  {
+    "timestamp": "2026-02-14T14:20:45.345Z",
+    "gcType": "G1 Young Generation",
+    "duration": 125,
+    "unit": "milliseconds",
+    "heapBeforeGC": 1503238553,
+    "heapAfterGC": 1395864370,
+    "heapReclaimed": 107374183,
+    "youngGenBeforeGC": 536870912,
+    "youngGenAfterGC": 53687091,
+    "oldGenBeforeGC": 966367641,
+    "oldGenAfterGC": 1342177279
+  },
+  {
+    "timestamp": "2026-02-14T14:25:50.456Z",
+    "gcType": "G1 Young Generation",
+    "duration": 189,
+    "unit": "milliseconds",
+    "heapBeforeGC": 1717986918,
+    "heapAfterGC": 1610612735,
+    "heapReclaimed": 107374183,
+    "youngGenBeforeGC": 536870912,
+    "youngGenAfterGC": 53687091,
+    "oldGenBeforeGC": 1181116006,
+    "oldGenAfterGC": 1556925644
+  },
+  {
+    "timestamp": "2026-02-14T14:30:55.567Z",
+    "gcType": "G1 Young Generation",
+    "duration": 267,
+    "unit": "milliseconds",
+    "heapBeforeGC": 1932735283,
+    "heapAfterGC": 1825361100,
+    "heapReclaimed": 107374183,
+    "youngGenBeforeGC": 536870912,
+    "youngGenAfterGC": 53687091,
+    "oldGenBeforeGC": 1395864370,
+    "oldGenAfterGC": 1771674009
+  },
+  {
+    "timestamp": "2026-02-14T14:35:12.678Z",
+    "gcType": "G1 Mixed GC",
+    "duration": 1234,
+    "unit": "milliseconds",
+    "heapBeforeGC": 2040109465,
+    "heapAfterGC": 1986422374,
+    "heapReclaimed": 53687091,
+    "youngGenBeforeGC": 536870912,
+    "youngGenAfterGC": 53687091,
+    "oldGenBeforeGC": 1503238553,
+    "oldGenAfterGC": 1932735283,
+    "note": "Old Gen barely reclaimed, indicating memory leak"
+  },
+  {
+    "timestamp": "2026-02-14T14:36:23.789Z",
+    "gcType": "G1 Full GC",
+    "duration": 8234,
+    "unit": "milliseconds",
+    "heapBeforeGC": 2104533975,
+    "heapAfterGC": 2061584302,
+    "heapReclaimed": 42949673,
+    "youngGenBeforeGC": 429496729,
+    "youngGenAfterGC": 21474836,
+    "oldGenBeforeGC": 1675037246,
+    "oldGenAfterGC": 2040109465,
+    "note": "Full GC unable to reclaim memory - OOM imminent",
+    "warnings": [
+      "GC overhead limit exceeded",
+      "Heap usage at 96% after Full GC"
+    ]
+  }
+]

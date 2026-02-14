@@ -1,0 +1,122 @@
+[
+  {
+    "timestamp": "2026-02-14T14:00:00.000Z",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "metric": "db.connection.pool.usage",
+    "value": 32.5,
+    "unit": "%",
+    "metadata": {
+      "active": 16,
+      "idle": 33,
+      "max": 50,
+      "pending": 0,
+      "poolName": "HikariPool-1"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:05:00.000Z",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "metric": "db.connection.pool.usage",
+    "value": 45.2,
+    "unit": "%",
+    "metadata": {
+      "active": 22,
+      "idle": 27,
+      "max": 50,
+      "pending": 2,
+      "poolName": "HikariPool-1"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:10:00.000Z",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "metric": "db.connection.pool.usage",
+    "value": 58.7,
+    "unit": "%",
+    "metadata": {
+      "active": 29,
+      "idle": 20,
+      "max": 50,
+      "pending": 8,
+      "poolName": "HikariPool-1"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:15:00.000Z",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "metric": "db.connection.pool.usage",
+    "value": 72.3,
+    "unit": "%",
+    "metadata": {
+      "active": 36,
+      "idle": 13,
+      "max": 50,
+      "pending": 23,
+      "poolName": "HikariPool-1"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:20:00.000Z",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "metric": "db.connection.pool.usage",
+    "value": 85.1,
+    "unit": "%",
+    "metadata": {
+      "active": 42,
+      "idle": 7,
+      "max": 50,
+      "pending": 45,
+      "poolName": "HikariPool-1"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:25:00.000Z",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "metric": "db.connection.pool.usage",
+    "value": 93.8,
+    "unit": "%",
+    "metadata": {
+      "active": 46,
+      "idle": 3,
+      "max": 50,
+      "pending": 89,
+      "poolName": "HikariPool-1"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:00.000Z",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "metric": "db.connection.pool.usage",
+    "value": 98.5,
+    "unit": "%",
+    "metadata": {
+      "active": 49,
+      "idle": 0,
+      "max": 50,
+      "pending": 127,
+      "poolName": "HikariPool-1"
+    }
+  },
+  {
+    "timestamp": "2026-02-14T14:30:30.000Z",
+    "service": "payment-service",
+    "host": "payment-prod-01",
+    "metric": "db.connection.pool.usage",
+    "value": 100.0,
+    "unit": "%",
+    "metadata": {
+      "active": 50,
+      "idle": 0,
+      "max": 50,
+      "pending": 184,
+      "poolName": "HikariPool-1"
+    }
+  }
+]

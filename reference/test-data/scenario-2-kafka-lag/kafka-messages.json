@@ -1,0 +1,82 @@
+[
+  {
+    "topic": "metrics",
+    "partition": 0,
+    "offset": 1260570,
+    "timestamp": "2026-02-14T14:29:55.123Z",
+    "key": "payment-service",
+    "value": {
+      "timestamp": "2026-02-14T14:29:55.123Z",
+      "service": "payment-service",
+      "host": "payment-prod-01",
+      "metric": "http.request.rate",
+      "value": 1250,
+      "unit": "requests/sec"
+    }
+  },
+  {
+    "topic": "metrics",
+    "partition": 0,
+    "offset": 1260571,
+    "timestamp": "2026-02-14T14:29:56.234Z",
+    "key": "payment-service",
+    "value": {
+      "timestamp": "2026-02-14T14:29:56.234Z",
+      "service": "payment-service",
+      "host": "payment-prod-02",
+      "metric": "cpu.usage",
+      "value": 78.5,
+      "unit": "%"
+    }
+  },
+  {
+    "topic": "metrics",
+    "partition": 0,
+    "offset": 1260572,
+    "timestamp": "2026-02-14T14:29:57.345Z",
+    "key": "order-service",
+    "value": {
+      "timestamp": "2026-02-14T14:29:57.345Z",
+      "service": "order-service",
+      "host": "order-prod-01",
+      "metric": "memory.usage",
+      "value": 82.3,
+      "unit": "%"
+    }
+  },
+  {
+    "topic": "logs",
+    "partition": 1,
+    "offset": 5678901,
+    "timestamp": "2026-02-14T14:29:58.456Z",
+    "key": "payment-service",
+    "value": {
+      "timestamp": "2026-02-14T14:29:58.456Z",
+      "level": "INFO",
+      "service": "payment-service",
+      "host": "payment-prod-01",
+      "logger": "com.payment.controller.PaymentController",
+      "message": "Payment processed successfully",
+      "context": {
+        "paymentId": "pay-123456",
+        "amount": 99.99,
+        "currency": "USD"
+      }
+    }
+  },
+  {
+    "topic": "metrics",
+    "partition": 0,
+    "offset": 1260573,
+    "timestamp": "2026-02-14T14:29:59.567Z",
+    "key": "payment-service",
+    "value": {
+      "timestamp": "2026-02-14T14:29:59.567Z",
+      "service": "payment-service",
+      "host": "payment-prod-01",
+      "metric": "db.connection.pool.usage",
+      "value": 65.4,
+      "unit": "%"
+    }
+  }
+]
